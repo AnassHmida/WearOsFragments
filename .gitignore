@@ -1,0 +1,4 @@
+# Project exclude paths
+/.gradle/
+/Wearable/build/
+/Wearable/build/intermediates/javac/debug/classes/
