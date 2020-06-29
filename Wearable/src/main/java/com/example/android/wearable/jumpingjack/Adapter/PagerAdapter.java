@@ -14,45 +14,55 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.jumpingjack;
+package com.example.android.wearable.jumpingjack.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple adapter for the {@link ViewPager}
- */
-public class PagerAdapter extends FragmentPagerAdapter {
+import static androidx.viewpager.widget.PagerAdapter.POSITION_NONE;
+
+
+public class PagerAdapter extends FragmentStateAdapter
+{
 
     private List<Fragment> mFragments;
 
-    PagerAdapter(FragmentManager fm) {
-        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public PagerAdapter(@NonNull Fragment fragment) {
+        super(fragment);
         mFragments = new ArrayList<>();
+    }
+
+    public PagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
+        mFragments = new ArrayList<>();
+    }
+
+    public void addFragment(Fragment fragment) {
+        mFragments.add(fragment);
+        notifyDataSetChanged();
+    }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         return mFragments.get(position);
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return mFragments.size();
-    }
-
-    void addFragment(Fragment fragment) {
-        mFragments.add(fragment);
-        notifyDataSetChanged();
-    }
-    public int getItemPosition(Object object) {
-        return POSITION_NONE;
     }
 }

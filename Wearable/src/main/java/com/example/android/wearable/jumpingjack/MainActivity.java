@@ -24,12 +24,18 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 import androidx.wear.ambient.AmbientModeSupport;
 
-import com.example.android.wearable.jumpingjack.fragments.List2Fragment;
-import com.example.android.wearable.jumpingjack.fragments.MainFragment;
-import com.example.android.wearable.jumpingjack.fragments.List1Fragment;
+import com.example.android.wearable.jumpingjack.Adapter.PagerAdapter;
+import com.example.android.wearable.jumpingjack.Fragments.List2Fragment;
+import com.example.android.wearable.jumpingjack.Fragments.MainFragment;
+import com.example.android.wearable.jumpingjack.Fragments.List1Fragment;
+import com.example.android.wearable.jumpingjack.Fragments.ParentFragment;
+import com.example.android.wearable.jumpingjack.Model.Accounts;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends FragmentActivity
@@ -44,8 +50,9 @@ public class MainActivity extends FragmentActivity
     private boolean mHandDown = true;
 
 
-    private ViewPager mPager;
+    private ViewPager2 mPager;
     private MainFragment mMainFragment;
+    private ParentFragment mParentFragment;
     private List1Fragment List1Page;
     private List2Fragment List2Page;
     private ImageView mSecondIndicator;
@@ -54,8 +61,8 @@ public class MainActivity extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.jumping_jack_layout);
 
+        setContentView(R.layout.jumping_jack_layout);
         AmbientModeSupport.attach(this);
 
         setupViews();
@@ -68,21 +75,19 @@ public class MainActivity extends FragmentActivity
         mFirstIndicator = findViewById(R.id.indicator_0);
         mSecondIndicator = findViewById(R.id.indicator_1);
         mThirdIndicator = findViewById(R.id.indicator_2);
-
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-
-        mMainFragment = new MainFragment(mPager);
-        List1Page = new List1Fragment(mPager);
-        List2Page = new List2Fragment(mPager);
-
-        adapter.addFragment(mMainFragment);
-        adapter.addFragment(List1Page);
-        adapter.addFragment(List2Page);
+        List<Accounts> accounts= new ArrayList<>();
+        accounts.add(new Accounts(50783,"anas","First account","335,5 €","à venir -35,5","Solde au 20/09/2020"));
+        accounts.add(new Accounts(89984,"anas","Second account","440,6 €","à venir -38,5","Solde au 20/09/2020"));
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(),getLifecycle());
+        for (Accounts acc:accounts
+             ) {
+            mParentFragment = new ParentFragment(acc,this);
+            adapter.addFragment(mParentFragment);
+        }
         setIndicator(0);
-        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int i, float v, int i2) {
-                // No-op.
             }
 
             @Override

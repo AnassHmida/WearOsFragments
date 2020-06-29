@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.jumpingjack.fragments;
+package com.example.android.wearable.jumpingjack.Fragments;
 
+import com.example.android.wearable.jumpingjack.Model.Accounts;
 import com.example.android.wearable.jumpingjack.R;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,14 +37,22 @@ import butterknife.ButterKnife;
  */
 public class MainFragment extends Fragment {
 
-    ViewPager pager;
-    @BindView(R.id.list1)
-    Button page1;
-    @BindView(R.id.list2)
-    Button page2;
+    ViewPager2 pager;
+    Accounts accounts;
 
-    public MainFragment(ViewPager pager){
+    @BindView(R.id.balance)
+    TextView balance;
+    @BindView(R.id.date)
+    TextView date;
+    @BindView(R.id.incoming)
+    TextView incoming;
+    @BindView(R.id.acc_id)
+    TextView accid;
+
+
+    public MainFragment(ViewPager2 pager, Accounts accounts){
         this.pager = pager;
+        this.accounts = accounts;
     }
 
 
@@ -51,7 +61,11 @@ public class MainFragment extends Fragment {
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_layout, container, false);
         ButterKnife.bind(this,view);
-        page1.setOnClickListener(new View.OnClickListener() {
+        balance.setText(accounts.getBalance());
+        date.setText(accounts.getDate());
+        incoming.setText(accounts.getIncoming());
+        accid.setText("Account ID : "+String.valueOf(accounts.getId()));
+  /*      page1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pager.setCurrentItem(1,true);
@@ -65,7 +79,7 @@ public class MainFragment extends Fragment {
                 pager.setCurrentItem(2,true);
 
             }
-        });
+        });*/
         return view;
     }
 

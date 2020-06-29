@@ -21,18 +21,13 @@ import android.content.SharedPreferences;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 
-/**
- * A utility class for some helper methods.
- */
+
 public class Utils {
 
     private static final int DEFAULT_VIBRATION_DURATION_MS = 200; // in millis
     private static final String PREF_KEY_COUNTER = "counter";
 
-    /**
-     * Causes device to vibrate for the given duration (in millis). If duration is set to 0, then it
-     * will use the <code>DEFAULT_VIBRATION_DURATION_MS</code>.
-     */
+
     public static void vibrate(Context context, int duration) {
         if (duration == 0) {
             duration = DEFAULT_VIBRATION_DURATION_MS;

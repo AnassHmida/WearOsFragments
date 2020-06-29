@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.jumpingjack.fragments;
+package com.example.android.wearable.jumpingjack.Fragments;
 
-import com.example.android.wearable.jumpingjack.Adapter.MyAdapter;
-import com.example.android.wearable.jumpingjack.PagerAdapter;
+import com.example.android.wearable.jumpingjack.Adapter.PagerAdapter;
+import com.example.android.wearable.jumpingjack.Model.Accounts;
 import com.example.android.wearable.jumpingjack.R;
 
 import android.os.Bundle;
@@ -29,7 +29,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
-import androidx.wear.widget.WearableLinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 import androidx.wear.widget.WearableRecyclerView;
 
 import java.util.ArrayList;
@@ -38,18 +38,18 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple fragment that shows a button to reset the counter
- */
+
 public class List1Fragment extends Fragment {
     PagerAdapter adapter;
     @BindView(R.id.back)
     Button back;
     @BindView(R.id.recycler_list_view)
     WearableRecyclerView rv;
-    ViewPager pager;
-public List1Fragment(ViewPager pager){
+    ViewPager2 pager;
+    Accounts accounts;
+public List1Fragment(ViewPager2 pager, Accounts accounts){
     this.pager = pager;
+    this.accounts = accounts;
 }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,8 +71,8 @@ public List1Fragment(ViewPager pager){
         dataset.add("Android");
         dataset.add("Wear");
         dataset.add("Ez");
-        MyAdapter adapter = new MyAdapter(getContext(),dataset);
-        rv.setAdapter(adapter);
+//        MyAdapter adapter = new MyAdapter(getContext(),dataset);
+        //rv.setAdapter(adapter);
 
 
         return view;
