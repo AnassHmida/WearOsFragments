@@ -35,11 +35,18 @@ import androidx.wear.widget.WearableRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A simple fragment that shows a button to reset the counter
  */
 public class List1Fragment extends Fragment {
     PagerAdapter adapter;
+    @BindView(R.id.back)
+    Button back;
+    @BindView(R.id.recycler_list_view)
+    WearableRecyclerView rv;
     ViewPager pager;
 public List1Fragment(ViewPager pager){
     this.pager = pager;
@@ -47,15 +54,15 @@ public List1Fragment(ViewPager pager){
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.list1_layout, container, false);
-        Button back = view.findViewById(R.id.back);
+        ButterKnife.bind(this, view);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                         pager.setCurrentItem(0, true);
             }
         });
-        WearableRecyclerView rv = view.findViewById(R.id.recycler_list_view);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         List<String> dataset = new ArrayList<String>();
         dataset.add("Lorem");

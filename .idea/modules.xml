@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JumpingJack.iml" filepath="$PROJECT_DIR$/.idea/modules/JumpingJack.iml" group="JumpingJack" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Wearable/Wearable.iml" filepath="$PROJECT_DIR$/.idea/modules/Wearable/Wearable.iml" group="JumpingJack/Wearable" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WearOsFragments.iml" filepath="$PROJECT_DIR$/.idea/modules/WearOsFragments.iml" group="WearOsFragments" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Wearable/Wearable.iml" filepath="$PROJECT_DIR$/.idea/modules/Wearable/Wearable.iml" group="WearOsFragments/Wearable" />
     </modules>
   </component>
 </project>

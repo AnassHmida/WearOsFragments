@@ -27,14 +27,21 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A simple fragment for showing the count
  */
 public class MainFragment extends Fragment {
 
     ViewPager pager;
-    public MainFragment(ViewPager pager){
+    @BindView(R.id.list1)
+    Button page1;
+    @BindView(R.id.list2)
+    Button page2;
 
+    public MainFragment(ViewPager pager){
         this.pager = pager;
     }
 
@@ -43,7 +50,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_layout, container, false);
-        Button page1 = view.findViewById(R.id.list1);
+        ButterKnife.bind(this,view);
         page1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +58,7 @@ public class MainFragment extends Fragment {
 
             }
         });
-        Button page2 = view.findViewById(R.id.list2);
+
         page2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

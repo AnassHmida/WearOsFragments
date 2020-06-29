@@ -123,21 +123,6 @@ public class MainActivity extends FragmentActivity
         // No op.
     }
 
-    /**
-     * A very simple algorithm to detect a successful up-down movement of hand(s). The algorithm
-     * is based on a delta of the handing being up vs. down and taking less than TIME_THRESHOLD_NS
-     * to happen.
-     *
-     *
-     * This algorithm isn't intended to be used in production but just to show what's possible with
-     * sensors. You will want to take into account other components (y and z) and other sensors to
-     * get a more accurate reading.
-     */
-
-
-    /**
-     * Called on detection of a successful down -> up or up -> down movement of hand.
-     */
     private void onJumpDetected(boolean handDown) {
         if (mHandDown != handDown) {
             mHandDown = handDown;

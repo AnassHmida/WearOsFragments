@@ -22,9 +22,16 @@ import androidx.wear.widget.WearableRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class List2Fragment extends Fragment {
     PagerAdapter adapter;
+    @BindView(R.id.back)
+            Button back;
+    @BindView(R.id.recycler_list_view2)
+            WearableRecyclerView rv;
     ViewPager pager;
     public List2Fragment(ViewPager pager){
         this.pager = pager;
@@ -33,14 +40,14 @@ public class List2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list2_layout, container, false);
-        Button back = view.findViewById(R.id.back);
+        ButterKnife.bind(this, view);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pager.setCurrentItem(0, true);
             }
         });
-        WearableRecyclerView rv = view.findViewById(R.id.recycler_list_view2);
+
         rv.setEdgeItemsCenteringEnabled(true);
         rv.setLayoutManager(new WearableLinearLayoutManager(getContext()));
         List<String> dataset = new ArrayList<String>();
