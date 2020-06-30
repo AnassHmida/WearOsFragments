@@ -72,7 +72,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.row_title);
-            cardframe = itemView.findViewById(R.id.card_view);
+//            cardframe = itemView.findViewById(R.id.card_view);
             itemView.setOnClickListener(this);
             myDescription = itemView.findViewById(R.id.row_description);
         }

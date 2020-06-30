@@ -22,6 +22,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -39,8 +40,8 @@ public class List2Fragment extends Fragment {
     PagerAdapter adapter;
     Accounts accounts;
     GestureDetector gestureDetector;
-    @BindView(R.id.back)
-    TextView back;
+ /*   @BindView(R.id.back)
+    TextView back;*/
     @BindView(R.id.recycler_list_view2)
             WearableRecyclerView rv;
     ViewPager2 pager;
@@ -55,24 +56,22 @@ public class List2Fragment extends Fragment {
         View view = inflater.inflate(R.layout.list2_layout, container, false);
         //gestureDetector = new GestureDetector(getActivity(), new GestureListener());
         ButterKnife.bind(this, view);
-        ViewCompat.setNestedScrollingEnabled(rv, false);
-
-        back.setOnClickListener(new View.OnClickListener() {
+     //   ViewCompat.setNestedScrollingEnabled(rv, false);
+    /*    back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pager.setCurrentItem(0, true);
             }
-        });
-
-        rv.setEdgeItemsCenteringEnabled(true);
-        rv.setOnFlingListener(new RecyclerView.OnFlingListener() {
+        });*/
+       // rv.setEdgeItemsCenteringEnabled(true);
+     /*   rv.setOnFlingListener(new RecyclerView.OnFlingListener() {
             @Override
             public boolean onFling(int velocityX, int velocityY) {
                 rv.dispatchNestedFling(velocityX, velocityY, false);
                 return false;
             }
-        });
-        rv.setLayoutManager(new WearableLinearLayoutManager(getContext()));
+        });*/
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
         List<Transactions> transactions = new ArrayList<>();
         Transactions dataset = new Transactions(1,"35,58 €","FACTURE CARTE DE CREDIT AGILE , ADRESSE 55862 / RU");
         transactions.add(dataset);
