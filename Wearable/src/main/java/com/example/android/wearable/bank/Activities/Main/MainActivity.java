@@ -1,8 +1,5 @@
 package com.example.android.wearable.bank.Activities.Main;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -16,10 +13,9 @@ import androidx.wear.ambient.AmbientModeSupport;
 import com.example.android.wearable.bank.Adapters.AccountsAdapter;
 import com.example.android.wearable.bank.Fragments.AccountFragments.SupportFragment;
 import com.example.android.wearable.bank.Fragments.ParentFragment;
-import com.example.android.wearable.bank.Model.Account;
-import com.example.android.wearable.bank.Model.Accounts;
-import com.example.android.wearable.bank.Model.Accountss;
-import com.example.android.wearable.bank.Model.Login;
+import com.example.android.wearable.bank.Model.Accounts.Account;
+import com.example.android.wearable.bank.Model.Accounts.Accounts;
+import com.example.android.wearable.bank.Model.Login.Login;
 import com.example.android.wearable.jumpingjack.R;
 
 import java.util.List;
@@ -52,7 +48,7 @@ private int SelectedParentPage = 0;
         mainViewModel.GetAllAccounts(new Account(login.getOtp(),"All"));
     }
 
-    public ParentFragment newAccountsInstance(Accountss accounts) {
+    public ParentFragment newAccountsInstance(Accounts accounts) {
         ParentFragment parentFragment = new ParentFragment(accounts);
         Bundle argument = new Bundle();
         argument.putString("ID", accounts.getId());
@@ -61,9 +57,9 @@ private int SelectedParentPage = 0;
     }
 
     private void SubscribeObservers(){
-        mainViewModel.observeAuthState().observe( this, new androidx.lifecycle.Observer<MainResource<List<Accountss>>>() {
+        mainViewModel.observeAuthState().observe( this, new androidx.lifecycle.Observer<MainResource<List<Accounts>>>() {
             @Override
-            public void onChanged(MainResource<List<Accountss>> accountMainResource) {
+            public void onChanged(MainResource<List<Accounts>> accountMainResource) {
                 if(accountMainResource != null){
                     switch (accountMainResource.status){
                         case LOADING:{
@@ -134,11 +130,12 @@ private int SelectedParentPage = 0;
 
     private void setupAccountsViews() {
 
-        List<Accountss> accountss = Paper.book().read("accounts");
+        List<Accounts> accountss = Paper.book().read("accounts");
         mPager = findViewById(R.id.pager);
+
         adapter = new AccountsAdapter(getSupportFragmentManager(),getLifecycle());
         SetAccountsIndicators(accountss);
-        for (Accountss acc:accountss) {
+        for (Accounts acc:accountss) {
             mParentFragment = newAccountsInstance(acc);
             adapter.addFragment(mParentFragment);
         }
@@ -175,7 +172,7 @@ private int SelectedParentPage = 0;
 
 
 
-    private void SetAccountsIndicators(List<Accountss> accounts){
+    private void SetAccountsIndicators(List<Accounts> accounts){
         ll = (LinearLayout)findViewById(R.id.indicatorlayout);
         for(int i=0;i<accounts.size();i++)
         {
@@ -213,7 +210,7 @@ private int SelectedParentPage = 0;
         }
     }
 
-    private void resetIndicators(List<Accountss> accounts){
+    private void resetIndicators(List<Accounts> accounts){
         for(int i=0;i<accounts.size();i++)
         {
             ImageView img = (ImageView) findViewById(R.id.indicatorlayout).findViewWithTag(i);

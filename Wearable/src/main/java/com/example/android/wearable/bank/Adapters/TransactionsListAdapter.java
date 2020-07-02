@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.wearable.bank.Model.Transactions;
+import com.example.android.wearable.bank.Model.Transaction.Transactions;
 import com.example.android.wearable.jumpingjack.R;
 
 
@@ -25,12 +25,15 @@ public class TransactionsListAdapter extends RecyclerView.Adapter<TransactionsLi
 
     private static final String TAG = "MyAdapter";
     // data is passed into the constructor
-    public TransactionsListAdapter(Context context, List<Transactions> data) {
+    public TransactionsListAdapter(Context context,List<Transactions> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context = context;
     }
-
+public void SetTransactionData(List<Transactions> data){
+    this.mData = data;
+    notifyDataSetChanged();
+}
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.transactions_recyclerview_row, parent, false);
@@ -40,10 +43,10 @@ public class TransactionsListAdapter extends RecyclerView.Adapter<TransactionsLi
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final String title = mData.get(position).getTitle();
-        holder.myTextView.setText(mData.get(position).getTitle());
-        holder.myDescription.setText(mData.get(position).getDescription());
-        if(mData.get(position).getTitle().contains("-")){
+        final String title = mData.get(position).getAmount();
+        holder.myTextView.setText(mData.get(position).getAmount());
+        holder.myDescription.setText(mData.get(position).getOperation());
+        if(mData.get(position).getAmount().contains("-")){
             holder.myTextView.setTextColor(context.getResources().getColor(R.color.flat_red));
         }
         holder.myTextView.setOnClickListener(new View.OnClickListener() {

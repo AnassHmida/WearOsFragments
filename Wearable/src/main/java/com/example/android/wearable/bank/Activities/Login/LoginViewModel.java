@@ -3,30 +3,18 @@ package com.example.android.wearable.bank.Activities.Login;
 
 
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.LiveDataReactiveStreams;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
 import com.example.android.wearable.bank.DataSources.LoginClient;
-import com.example.android.wearable.bank.Model.Login;
-import com.example.android.wearable.bank.Model.User;
+import com.example.android.wearable.bank.Model.Login.Login;
+import com.example.android.wearable.bank.Model.Login.User;
 import com.example.android.wearable.bank.Network.LoginService;
 
-import org.reactivestreams.Subscriber;
-
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 

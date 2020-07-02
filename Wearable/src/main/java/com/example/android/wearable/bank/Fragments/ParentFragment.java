@@ -13,13 +13,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.android.wearable.bank.Adapters.AccountsAdapter;
 import com.example.android.wearable.bank.Fragments.AccountFragments.SupportFragment;
-import com.example.android.wearable.bank.Fragments.AccountFragments.TransactionsFragment;
+import com.example.android.wearable.bank.Fragments.AccountFragments.Transactions.TransactionsFragment;
 import com.example.android.wearable.bank.Fragments.AccountFragments.MainFragment;
-import com.example.android.wearable.bank.Model.Accounts;
-import com.example.android.wearable.bank.Model.Accountss;
+import com.example.android.wearable.bank.Model.Accounts.Accounts;
 import com.example.android.wearable.jumpingjack.R;
-
-import java.util.ArrayList;
 
 
 public class ParentFragment extends Fragment  {
@@ -28,14 +25,14 @@ public class ParentFragment extends Fragment  {
     private SupportFragment supportFragment;
     private TransactionsFragment transactionsFragment;
 
-    Accountss accountss;
+    Accounts accountss;
     Context context;
      AccountsAdapter adapter ;
     int i;
     private ViewPager2 verticalViewPager;
     private static final String TAG = "ParentFragment";
 
-    public ParentFragment(Accountss accounts) {
+    public ParentFragment(Accounts accounts) {
         this.accountss = accounts;
 
 
@@ -44,7 +41,7 @@ public class ParentFragment extends Fragment  {
         mMainFragment.setBalance(Text);
     }
 
-    public Fragment newInstance(Fragment fragment,Accountss accounts,int type) {
+    public Fragment newInstance(Fragment fragment, Accounts accounts, int type) {
         Bundle argument = new Bundle();
         argument.putSerializable("Accounts", accounts);
 
@@ -57,7 +54,7 @@ public class ParentFragment extends Fragment  {
             case 1:
 
             TransactionsFragment transactionsFragment = new TransactionsFragment();
-            // argument.putString("ID", accounts.getId());
+            argument.putString("ID", accounts.getId());
             transactionsFragment.setArguments(argument);
             return transactionsFragment;
 
@@ -87,6 +84,7 @@ public class ParentFragment extends Fragment  {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_parent, container, false);
         verticalViewPager = rootView.findViewById(R.id.verticalview_pager);
+
       adapter =  new AccountsAdapter(this);
         verticalViewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
         verticalViewPager.registerOnPageChangeCallback (new ViewPager2.OnPageChangeCallback() {
@@ -106,14 +104,14 @@ public class ParentFragment extends Fragment  {
         });
 
         mMainFragment = (MainFragment)newInstance(mMainFragment,accountss,0);
-        transactionsFragment = (TransactionsFragment)newInstance(transactionsFragment,accountss,0);
+        transactionsFragment = (TransactionsFragment)newInstance(transactionsFragment,accountss,1);
         // = (MainFragment)newInstance(mMainFragment,accountss,1);
         //mMainFragment = (MainFragment)newInstance(mMainFragment,accountss,0);
      //   mMainFragment = new MainFragment(verticalViewPager,accountss);
         //ransactionsFragment = new TransactionsFragment(verticalViewPager,accountss);
      // supportFragment = new SupportFragment(verticalViewPager,accountss);
         adapter.addFragment(mMainFragment);
-      //  adapter.addFragment(transactionsFragment);
+     adapter.addFragment(transactionsFragment);
        // adapter.addFragment(supportFragment);
         verticalViewPager.setAdapter(adapter);
 

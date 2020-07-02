@@ -36,21 +36,25 @@
 
     <com.example.android.wearable.bank.ViewPager.NestedScrollableHost
         android:layout_width="match_parent"
+        android:id="@+id/recycler"
         android:layout_below="@+id/back"
-        android:layout_height="wrap_content"
-        >
-        <androidx.wear.widget.WearableRecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/recycler_list_view2"
+        android:layout_height="wrap_content">
 
+        <com.todkars.shimmer.ShimmerRecyclerView
+            android:id="@+id/recycler_list_view2"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="45dp"
+            android:orientation="vertical"
             android:clipToPadding="false"
             android:background="@color/black"
-
-            android:layout_height="wrap_content"
+            app:shimmer_recycler_item_count="5"
+            app:shimmer_recycler_layout="@layout/transaction_item_shimmer"
             />
+
     </com.example.android.wearable.bank.ViewPager.NestedScrollableHost>
+
+
 </RelativeLayout>
 
 </androidx.wear.widget.BoxInsetLayout>

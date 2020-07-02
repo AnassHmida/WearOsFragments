@@ -1,10 +1,11 @@
-package com.example.android.wearable.bank.Model;
+package com.example.android.wearable.bank.Model.Login;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public  class Login {
+public  class Login implements Serializable {
     public List<ServicesEntity> getServices() {
         return Services;
     }

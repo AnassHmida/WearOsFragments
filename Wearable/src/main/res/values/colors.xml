@@ -23,6 +23,7 @@
     <color name="flat_red">#fc5c65</color>
     <color name="matte_black">#1B1B1B</color>
     <color name="dark_grey">#535c68</color>
-
+    <color name="colorShimmer">#676767</color>
+    <color name="colorShimmerHighlight">#fe0000</color>
 
 </resources>

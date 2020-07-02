@@ -55,8 +55,6 @@ public class AccountsAdapter extends FragmentStateAdapter
     public void addFragment(Fragment fragment) {
 
         mFragments.add(fragment);
-
-
         notifyDataSetChanged();
 
     }

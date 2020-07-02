@@ -17,7 +17,7 @@
 package com.example.android.wearable.bank.Fragments.AccountFragments;
 
 import com.example.android.wearable.bank.Adapters.AccountsAdapter;
-import com.example.android.wearable.bank.Model.Accounts;
+import com.example.android.wearable.bank.Model.Accounts.Accounts;
 import com.example.android.wearable.jumpingjack.R;
 
 import android.content.Context;
@@ -31,7 +31,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

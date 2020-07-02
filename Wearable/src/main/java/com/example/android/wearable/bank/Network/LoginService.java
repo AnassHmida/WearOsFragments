@@ -2,8 +2,8 @@ package com.example.android.wearable.bank.Network;
 
 
 
-import com.example.android.wearable.bank.Model.Login;
-import com.example.android.wearable.bank.Model.User;
+import com.example.android.wearable.bank.Model.Login.Login;
+import com.example.android.wearable.bank.Model.Login.User;
 
 
 import retrofit2.http.Body;

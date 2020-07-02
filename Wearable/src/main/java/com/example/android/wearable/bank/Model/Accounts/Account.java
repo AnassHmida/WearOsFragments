@@ -1,4 +1,4 @@
-package com.example.android.wearable.bank.Model;
+package com.example.android.wearable.bank.Model.Accounts;
 
 import com.google.gson.annotations.SerializedName;
 

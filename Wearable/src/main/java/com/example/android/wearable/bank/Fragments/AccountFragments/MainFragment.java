@@ -16,9 +16,7 @@
 
 package com.example.android.wearable.bank.Fragments.AccountFragments;
 
-import com.example.android.wearable.bank.Fragments.ParentFragment;
-import com.example.android.wearable.bank.Model.Accounts;
-import com.example.android.wearable.bank.Model.Accountss;
+import com.example.android.wearable.bank.Model.Accounts.Accounts;
 import com.example.android.wearable.jumpingjack.R;
 
 
@@ -41,7 +39,7 @@ import butterknife.ButterKnife;
 public class MainFragment extends Fragment{
 
     ViewPager2 pager;
-    Accountss accounts;
+    Accounts accounts;
 
     @BindView(R.id.balance)
     TextView balance;
@@ -71,7 +69,7 @@ public void setBalance(String number){
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_layout, container, false);
         ButterKnife.bind(this,view);
-        Accountss accounts = (Accountss) getArguments().getSerializable("Accounts");
+        Accounts accounts = (Accounts) getArguments().getSerializable("Accounts");
         setBalance(accounts.getOnlineBalance());
         date.setText("mis à jour le "+accounts.getCreationDate());
         incoming.setText(accounts.getOpenBalance());

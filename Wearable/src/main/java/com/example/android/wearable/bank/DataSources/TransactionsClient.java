@@ -4,7 +4,10 @@ package com.example.android.wearable.bank.DataSources;
 
 import com.example.android.wearable.bank.Model.Accounts.Account;
 import com.example.android.wearable.bank.Model.Accounts.Accounts;
+import com.example.android.wearable.bank.Model.Transaction.Transaction;
+import com.example.android.wearable.bank.Model.Transaction.Transactions;
 import com.example.android.wearable.bank.Network.AccountsService;
+import com.example.android.wearable.bank.Network.TransactionsService;
 import com.example.android.wearable.bank.Utils.util;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -19,12 +22,12 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
-public class AccountsClient {
+public class TransactionsClient {
 
-    private static AccountsClient instance;
-    private AccountsService accountsService;
+    private static TransactionsClient instance;
+    private TransactionsService transactionsService;
 
-    private AccountsClient(){
+    private TransactionsClient(){
 
         final Gson gson =new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -37,12 +40,12 @@ public class AccountsClient {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient.build())
                 .build();
-        accountsService  = retrofit.create(AccountsService.class);
+        transactionsService  = retrofit.create(TransactionsService.class);
     }
 
-    public static AccountsClient getInstance(){
+    public static TransactionsClient getInstance(){
         if(instance == null){
-            instance = new AccountsClient();
+            instance = new TransactionsClient();
         }
         return instance;
     }
@@ -50,8 +53,8 @@ public class AccountsClient {
 
 
 
-    public Observable<List<Accounts>> getAllAccounts(Account account){
-        return accountsService.getAllAccounts(account);
+    public Observable<List<Transactions>> getTransactionsPerAccount(Transaction transaction){
+        return transactionsService.getTransactionsPerAccount(transaction);
     }
 }
 

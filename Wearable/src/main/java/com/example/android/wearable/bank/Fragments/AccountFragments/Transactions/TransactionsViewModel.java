@@ -1,5 +1,4 @@
-package com.example.android.wearable.bank.Activities.Main;
-
+package com.example.android.wearable.bank.Fragments.AccountFragments.Transactions;
 
 
 
@@ -12,43 +11,48 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
-import com.example.android.wearable.bank.DataSources.AccountsClient;
-import com.example.android.wearable.bank.Model.Accounts.Account;
+import com.example.android.wearable.bank.DataSources.LoginClient;
+import com.example.android.wearable.bank.DataSources.TransactionsClient;
+import com.example.android.wearable.bank.Fragments.AccountFragments.Transactions.TransactionsResource;
 import com.example.android.wearable.bank.Model.Accounts.Accounts;
-import com.example.android.wearable.bank.Network.AccountsService;
+import com.example.android.wearable.bank.Model.Login.Login;
+import com.example.android.wearable.bank.Model.Login.User;
+import com.example.android.wearable.bank.Model.Transaction.Transaction;
+import com.example.android.wearable.bank.Model.Transaction.Transactions;
+import com.example.android.wearable.bank.Network.LoginService;
+import com.example.android.wearable.bank.Network.TransactionsService;
 
 import java.util.List;
 
+import io.paperdb.Paper;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class MainViewModel  extends ViewModel {
-    private  AccountsService accountsService;
+public class TransactionsViewModel  extends ViewModel {
+    private TransactionsService transactionsService;
     private static final String TAG = "AuthViewModel";
     private String Authenticated ;
     private rx.Subscription subscription;
-    final MutableLiveData<MainResource<List<Accounts>>> result = new MutableLiveData<>();
-    public MainViewModel(){
+    final MutableLiveData<TransactionsResource<List<Transactions>>> result = new MutableLiveData<>();
+    public TransactionsViewModel(){
     }
 
-    public MainViewModel(AccountsService accountsService){
-        this.accountsService = accountsService;
+    public TransactionsViewModel(TransactionsService transactionsService){
+        this.transactionsService = transactionsService;
     }
 
-
-    public void GetAllAccounts(Account account){
-
-
-        subscription = AccountsClient.getInstance().getAllAccounts(account)
+    public void getTransactionsPerAccount(Transaction transaction){
+        subscription = TransactionsClient.getInstance().getTransactionsPerAccount(transaction)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<List<Accounts>>() {
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<List<Transactions>>() {
 
                     @Override
-                    public void onNext(List<Accounts> accounts) {
-                        result.setValue(MainResource.datareceived(accounts));
-                        Log.d(TAG, "onNext: " + accounts.get(0).getOpenBalance());
+                    public void onNext(List<Transactions> transactions) {
+                        result.setValue(TransactionsResource.datareceived(transactions));
+                        Paper.book().write(transaction.getBankAccountId(), transactions);
+                         Log.d(TAG, "onNext: " + transactions.get(0).getAmount());
                     }
 
                     @Override
@@ -58,8 +62,8 @@ public class MainViewModel  extends ViewModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        result.setValue(MainResource.error("error",null));
-                        Log.d(TAG, "onError: " +e.getMessage());
+                        Log.d(TAG, "onError: "+e.getMessage());
+                        result.setValue(TransactionsResource.error("error",null));
                     }
 
                 });
@@ -96,7 +100,7 @@ public class MainViewModel  extends ViewModel {
                       }
                   }).subscribeOn(Schedulers.io()));
       }*/
-    public LiveData<MainResource<List<Accounts>>> observeAuthState(){
+    public LiveData<TransactionsResource<List<Transactions>>> observeTransactionsState(){
         return result;
     }
 }

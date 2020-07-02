@@ -1,20 +1,14 @@
 package com.example.android.wearable.bank.DataSources;
 
 
-import androidx.annotation.NonNull;
-
-import com.example.android.wearable.bank.Model.Login;
-import com.example.android.wearable.bank.Model.User;
+import com.example.android.wearable.bank.Model.Login.Login;
+import com.example.android.wearable.bank.Model.Login.User;
 import com.example.android.wearable.bank.Network.LoginService;
 import com.example.android.wearable.bank.Utils.util;
 import com.google.gson.FieldNamingPolicy;
-import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.List;
-
-import io.reactivex.Flowable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
