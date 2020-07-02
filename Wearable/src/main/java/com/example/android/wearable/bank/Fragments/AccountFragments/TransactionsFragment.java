@@ -38,9 +38,8 @@ public class TransactionsFragment extends Fragment {
     @BindView(R.id.recycler_list_view2)
             WearableRecyclerView rv;
     ViewPager2 pager;
-    public TransactionsFragment(ViewPager2 pager, Accounts accounts){
-        this.pager = pager;
-        this.accounts = accounts;
+    public TransactionsFragment(){
+
     }
 
     @Override

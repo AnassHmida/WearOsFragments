@@ -51,9 +51,7 @@ public class SupportFragment extends Fragment {
     @BindView(R.id.back)
     Button back;
     DataSentListener dataSentListener;
-public SupportFragment(ViewPager2 pager, Accounts accounts){
-    this.pager = pager;
-    this.accounts = accounts;
+public SupportFragment(){
 }
 
 

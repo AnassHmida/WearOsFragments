@@ -1,6 +1,5 @@
 package com.example.android.wearable.bank.Activities.Login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,12 +7,10 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.android.wearable.bank.Activities.MainActivity;
+import com.example.android.wearable.bank.Activities.Main.MainActivity;
 import com.example.android.wearable.bank.Model.Login;
 import com.example.android.wearable.bank.Model.User;
 import com.example.android.wearable.jumpingjack.R;
@@ -22,8 +19,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.paperdb.Paper;
-
-import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends FragmentActivity {
 @BindView(R.id.signin)

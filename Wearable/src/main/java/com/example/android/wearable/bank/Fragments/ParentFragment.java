@@ -19,6 +19,8 @@ import com.example.android.wearable.bank.Model.Accounts;
 import com.example.android.wearable.bank.Model.Accountss;
 import com.example.android.wearable.jumpingjack.R;
 
+import java.util.ArrayList;
+
 
 public class ParentFragment extends Fragment  {
 
@@ -41,6 +43,43 @@ public class ParentFragment extends Fragment  {
     public void dostuff(String Text,Accounts accounts){
         mMainFragment.setBalance(Text);
     }
+
+    public Fragment newInstance(Fragment fragment,Accountss accounts,int type) {
+        Bundle argument = new Bundle();
+        argument.putSerializable("Accounts", accounts);
+
+        switch(type) {
+            case 0:
+                MainFragment mainFragment = new MainFragment();
+                mainFragment.setArguments(argument);
+                return mainFragment;
+
+            case 1:
+
+            TransactionsFragment transactionsFragment = new TransactionsFragment();
+            // argument.putString("ID", accounts.getId());
+            transactionsFragment.setArguments(argument);
+            return transactionsFragment;
+
+            case 2:
+                SupportFragment supportFragment  = new SupportFragment();
+
+                // argument.putString("ID", accounts.getId());
+                supportFragment.setArguments(argument);
+                return supportFragment;
+
+
+            default:
+                // code block
+                return new Fragment();
+        }
+
+
+
+
+    }
+
+
 
 
     @Override
@@ -66,13 +105,18 @@ public class ParentFragment extends Fragment  {
             }
         });
 
-        mMainFragment = new MainFragment(verticalViewPager,accountss);
-        //transactionsFragment = new TransactionsFragment(verticalViewPager,accountss);
-      //  supportFragment = new SupportFragment(verticalViewPager,accountss);
+        mMainFragment = (MainFragment)newInstance(mMainFragment,accountss,0);
+        transactionsFragment = (TransactionsFragment)newInstance(transactionsFragment,accountss,0);
+        // = (MainFragment)newInstance(mMainFragment,accountss,1);
+        //mMainFragment = (MainFragment)newInstance(mMainFragment,accountss,0);
+     //   mMainFragment = new MainFragment(verticalViewPager,accountss);
+        //ransactionsFragment = new TransactionsFragment(verticalViewPager,accountss);
+     // supportFragment = new SupportFragment(verticalViewPager,accountss);
         adapter.addFragment(mMainFragment);
       //  adapter.addFragment(transactionsFragment);
        // adapter.addFragment(supportFragment);
         verticalViewPager.setAdapter(adapter);
+
         return rootView;
     }
 

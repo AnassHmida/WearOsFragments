@@ -1,4 +1,4 @@
-package com.example.android.wearable.bank.Activities;
+package com.example.android.wearable.bank.Activities.Main;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -8,36 +8,27 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.wear.ambient.AmbientModeSupport;
 
-import com.example.android.wearable.bank.Activities.Login.LoginResource;
-import com.example.android.wearable.bank.Activities.Login.LoginViewModel;
 import com.example.android.wearable.bank.Adapters.AccountsAdapter;
-import com.example.android.wearable.bank.DataSources.LoginClient;
 import com.example.android.wearable.bank.Fragments.AccountFragments.SupportFragment;
 import com.example.android.wearable.bank.Fragments.ParentFragment;
 import com.example.android.wearable.bank.Model.Account;
 import com.example.android.wearable.bank.Model.Accounts;
 import com.example.android.wearable.bank.Model.Accountss;
 import com.example.android.wearable.bank.Model.Login;
-import com.example.android.wearable.bank.Model.User;
 import com.example.android.wearable.jumpingjack.R;
 
 import java.util.List;
 
 import io.paperdb.Paper;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 
 public class MainActivity extends FragmentActivity
-        implements AmbientModeSupport.AmbientCallbackProvider, SensorEventListener, SupportFragment.DataSentListener {
+        implements AmbientModeSupport.AmbientCallbackProvider,SupportFragment.DataSentListener {
 
     private static final String TAG = "MainActivity";
 
@@ -53,19 +44,13 @@ private int SelectedParentPage = 0;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main_activity_layout);
+        Paper.init(this);
         AmbientModeSupport.attach(this);
         mainViewModel = new ViewModelProvider.NewInstanceFactory().create(MainViewModel.class);
         SubscribeObservers();
         Login login = Paper.book().read("login");
         mainViewModel.GetAllAccounts(new Account(login.getOtp(),"All"));
     }
-    /*public ParentFragment newInstance(Accounts accounts) {
-        ParentFragment parentFragment = new ParentFragment(accounts);
-        Bundle argument = new Bundle();
-        argument.putInt("ID", accounts.getId());
-        parentFragment.setArguments(argument);
-        return parentFragment;
-    }*/
 
     public ParentFragment newAccountsInstance(Accountss accounts) {
         ParentFragment parentFragment = new ParentFragment(accounts);
@@ -86,9 +71,9 @@ private int SelectedParentPage = 0;
                             break;
                         }
                         case DATARECEIVED:
-                            setupAccountsViews(accountMainResource.data);
-
                             Log.d(TAG, "onChanged:  LOGIN SUCESS" + accountMainResource.data);
+                            Paper.book().write("accounts", accountMainResource.data);
+                            setupAccountsViews();
                             break;
                         case ERROR:{
                             Log.d(TAG, "onChanged: "+"mochkla");
@@ -147,9 +132,9 @@ private int SelectedParentPage = 0;
     }
 
 
-    private void setupAccountsViews(List<Accountss> accountss ) {
+    private void setupAccountsViews() {
 
-
+        List<Accountss> accountss = Paper.book().read("accounts");
         mPager = findViewById(R.id.pager);
         adapter = new AccountsAdapter(getSupportFragmentManager(),getLifecycle());
         SetAccountsIndicators(accountss);
@@ -187,17 +172,6 @@ private int SelectedParentPage = 0;
             Log.d(TAG, "Unregistered for sensor events");
         }
     }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // No op.
-    }
-
 
 
 

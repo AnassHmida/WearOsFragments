@@ -13,11 +13,15 @@ import java.util.List;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import rx.Observable;
+import rx.Single;
 
 public interface AccountsService {
 
     @POST("api/accounts?apiVersion=1.0")
-    Observable<List<Accountss>> getLoginResponse(@Body Account account);
+    Observable<List<Accountss>> getAllAccounts(@Body Account account);
+
+    @POST("api/accounts?apiVersion=1.0")
+    Single<List<Accountss>> gettTransactionsResponse(@Body Account account);
 
 
 }

@@ -1,4 +1,4 @@
-package com.example.android.wearable.bank.Activities;
+package com.example.android.wearable.bank.Activities.Main;
 
 
 
@@ -7,35 +7,20 @@ package com.example.android.wearable.bank.Activities;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.LiveDataReactiveStreams;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
-import com.example.android.wearable.bank.Activities.Login.LoginResource;
 import com.example.android.wearable.bank.DataSources.AccountsClient;
-import com.example.android.wearable.bank.DataSources.LoginClient;
 import com.example.android.wearable.bank.Model.Account;
-import com.example.android.wearable.bank.Model.Accounts;
 import com.example.android.wearable.bank.Model.Accountss;
-import com.example.android.wearable.bank.Model.Login;
-import com.example.android.wearable.bank.Model.User;
 import com.example.android.wearable.bank.Network.AccountsService;
-import com.example.android.wearable.bank.Network.LoginService;
-
-import org.reactivestreams.Subscriber;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
+import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -52,6 +37,7 @@ public class MainViewModel  extends ViewModel {
     public MainViewModel(AccountsService accountsService){
         this.accountsService = accountsService;
     }
+
 
     public void GetAllAccounts(Account account){
 
@@ -74,6 +60,7 @@ public class MainViewModel  extends ViewModel {
                     @Override
                     public void onError(Throwable e) {
                         result.setValue(MainResource.error("error",null));
+                        Log.d(TAG, "onError: " +e.getMessage());
                     }
 
                 });

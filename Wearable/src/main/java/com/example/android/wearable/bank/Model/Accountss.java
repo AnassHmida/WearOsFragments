@@ -2,7 +2,9 @@ package com.example.android.wearable.bank.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public abstract class Accountss {
+import java.io.Serializable;
+
+public class Accountss implements Serializable {
     public String getName() {
         return name;
     }

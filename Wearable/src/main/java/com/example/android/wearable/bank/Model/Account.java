@@ -24,6 +24,6 @@ public  class Account {
 
     public Account(String otp, String sender) {
         this.otp = otp;
-        Sender = sender;
+        this.Sender = sender;
     }
 }

@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.android.wearable.bank.Activities.MainActivity"
+            android:name="com.example.android.wearable.bank.Activities.Main.MainActivity"
             android:label="@string/app_name">
 
         </activity>
