@@ -33,11 +33,16 @@
         android:id="@+id/back"
         android:text="22 / 04">
     </TextView>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/back">
+
 
     <com.example.android.wearable.bank.ViewPager.NestedScrollableHost
         android:layout_width="match_parent"
         android:id="@+id/recycler"
-        android:layout_below="@+id/back"
+
         android:layout_height="wrap_content">
 
         <com.todkars.shimmer.ShimmerRecyclerView
@@ -53,8 +58,37 @@
             />
 
     </com.example.android.wearable.bank.ViewPager.NestedScrollableHost>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:id="@+id/errordialog"
+    android:visibility="gone"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:id="@+id/img"
+        android:padding="10dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:tint="@color/white"
+        android:src="@drawable/ic_iconfinder_refresh">
 
 
+    </ImageView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="8dp"
+        android:layout_marginTop="15dp"
+        android:text="Failed to fetch data , try to refresh"
+        android:layout_below="@+id/img"
+        android:fontFamily="@font/montserrat_bold"
+
+        android:textColor="@color/white"></TextView>
+</RelativeLayout>
+</FrameLayout>
 </RelativeLayout>
 
 </androidx.wear.widget.BoxInsetLayout>

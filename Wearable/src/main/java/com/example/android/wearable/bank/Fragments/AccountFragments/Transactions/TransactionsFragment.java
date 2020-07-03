@@ -50,7 +50,8 @@ public class TransactionsFragment extends Fragment {
     GestureDetector gestureDetector;
     TransactionsListAdapter adapter;
     ArrayList<Transactions> jack,jack2;
-
+    @BindView(R.id.errordialog)
+    RelativeLayout errorRL;
     TransactionsViewModel transactionViewModel;
     List<Transactions> SavedStateTransactionData;
     private static final String TAG = "TransactionsFragment";
@@ -124,15 +125,15 @@ public class TransactionsFragment extends Fragment {
         rv.showShimmer();
         return view;
     }
-/*@OnClick(R.id.retry)
+@OnClick(R.id.img)
 public void retry(){
-        error.setVisibility(View.GONE);
+        errorRL.setVisibility(View.GONE);
     Login login = Paper.book().read("login");
     transactionViewModel.getTransactionsPerAccount(
             new Transaction(login.getOtp(),accounts.getId(),5)
     );
     rv.showShimmer();
-}*/
+}
     private void SubscribeOberservers(){
 
       //  transactionViewModel.observeTransactionsState().removeObservers(getViewLifecycleOwner());
@@ -152,12 +153,13 @@ public void retry(){
                         }
                         case ERROR:{
 
-                            Log.d(TAG, "onChanged:  Error ! " + transactionsResource.message);
-                        //    error.setVisibility(View.VISIBLE);
+                        //    Log.d(TAG, "onChanged:  Error ! " + transactionsResource.message);
+                          errorRL.setVisibility(View.VISIBLE);
+                          rv.hideShimmer();
                             break;
 
                         }case LOADING:{
-                            Log.d(TAG, "onChanged:  Loading data ...");
+                          //  Log.d(TAG, "onChanged:  Loading data ...");
                             break;
                         }
                         case NOT_AUTHENTICATED:

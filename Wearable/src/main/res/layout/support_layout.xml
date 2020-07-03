@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
+    android:visibility="gone"
     android:background="@color/black">
     <android.inputmethodservice.ExtractEditText
         android:layout_width="match_parent"
@@ -60,4 +68,41 @@ android:visibility="gone"
 
 
 </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/support"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ONLINE SUPPORT"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/support"
+                >
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:tint="@color/white"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_iconfinder_phone_call_2561306"></ImageView>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:tint="@color/white"
+                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/flat_mail"></ImageView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </FrameLayout>
 </androidx.wear.widget.BoxInsetLayout>

@@ -11,7 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import androidx.wear.ambient.AmbientModeSupport;
 
 import com.example.android.wearable.bank.Adapters.AccountsAdapter;
-import com.example.android.wearable.bank.Fragments.AccountFragments.SupportFragment;
+import com.example.android.wearable.bank.Fragments.AccountFragments.Support.SupportFragment;
 import com.example.android.wearable.bank.Fragments.ParentFragment;
 import com.example.android.wearable.bank.Model.Accounts.Account;
 import com.example.android.wearable.bank.Model.Accounts.Accounts;

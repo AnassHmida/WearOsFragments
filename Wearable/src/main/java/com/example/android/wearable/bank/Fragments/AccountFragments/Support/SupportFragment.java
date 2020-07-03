@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.bank.Fragments.AccountFragments;
+package com.example.android.wearable.bank.Fragments.AccountFragments.Support;
 
 import com.example.android.wearable.bank.Adapters.AccountsAdapter;
 import com.example.android.wearable.bank.Model.Accounts.Accounts;

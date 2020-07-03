@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.bank.Fragments.AccountFragments;
+package com.example.android.wearable.bank.Fragments.AccountFragments.Main;
 
 import com.example.android.wearable.bank.Model.Accounts.Accounts;
 import com.example.android.wearable.jumpingjack.R;
@@ -64,13 +64,14 @@ public void setBalance(String number){
         balance_card_view.setCardBackgroundColor(getResources().getColor(R.color.flat_red));
     }
 }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_layout, container, false);
         ButterKnife.bind(this,view);
         Accounts accounts = (Accounts) getArguments().getSerializable("Accounts");
-        setBalance(accounts.getOnlineBalance());
+        setBalance(accounts.getOnlineBalance()+" "+accounts.getCurrency());
         date.setText("mis à jour le "+accounts.getCreationDate());
         incoming.setText(accounts.getOpenBalance());
         if(accounts.getOpenBalance().contains("-")){

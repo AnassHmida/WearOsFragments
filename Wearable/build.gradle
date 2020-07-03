@@ -49,6 +49,7 @@ dependencies {
 
     //Paper
     implementation 'io.paperdb:paperdb:2.6'
+    implementation 'com.google.android.material:material:1.1.0'
 
     // Reactive Streams (convert Observable to LiveData)
     def reactivestreams_version = "1.1.1"

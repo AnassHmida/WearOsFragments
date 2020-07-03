@@ -24,7 +24,7 @@ public class TransactionsListAdapter extends RecyclerView.Adapter<TransactionsLi
     private ItemClickListener mClickListener;
 
     private static final String TAG = "MyAdapter";
-    // data is passed into the constructor
+
     public TransactionsListAdapter(Context context,List<Transactions> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;

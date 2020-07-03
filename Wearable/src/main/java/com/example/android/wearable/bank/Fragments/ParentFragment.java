@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.android.wearable.bank.Adapters.AccountsAdapter;
-import com.example.android.wearable.bank.Fragments.AccountFragments.SupportFragment;
+import com.example.android.wearable.bank.Fragments.AccountFragments.Support.SupportFragment;
 import com.example.android.wearable.bank.Fragments.AccountFragments.Transactions.TransactionsFragment;
-import com.example.android.wearable.bank.Fragments.AccountFragments.MainFragment;
+import com.example.android.wearable.bank.Fragments.AccountFragments.Main.MainFragment;
 import com.example.android.wearable.bank.Model.Accounts.Accounts;
 import com.example.android.wearable.jumpingjack.R;
 
@@ -64,8 +64,6 @@ public class ParentFragment extends Fragment  {
                 // argument.putString("ID", accounts.getId());
                 supportFragment.setArguments(argument);
                 return supportFragment;
-
-
             default:
                 // code block
                 return new Fragment();
@@ -105,14 +103,15 @@ public class ParentFragment extends Fragment  {
 
         mMainFragment = (MainFragment)newInstance(mMainFragment,accountss,0);
         transactionsFragment = (TransactionsFragment)newInstance(transactionsFragment,accountss,1);
+        supportFragment = (SupportFragment)newInstance(transactionsFragment,accountss,2);
         // = (MainFragment)newInstance(mMainFragment,accountss,1);
         //mMainFragment = (MainFragment)newInstance(mMainFragment,accountss,0);
      //   mMainFragment = new MainFragment(verticalViewPager,accountss);
         //ransactionsFragment = new TransactionsFragment(verticalViewPager,accountss);
-     // supportFragment = new SupportFragment(verticalViewPager,accountss);
+    //supportFragment = new SupportFragment(verticalViewPager,accountss);
         adapter.addFragment(mMainFragment);
      adapter.addFragment(transactionsFragment);
-       // adapter.addFragment(supportFragment);
+      adapter.addFragment(supportFragment);
         verticalViewPager.setAdapter(adapter);
 
         return rootView;
